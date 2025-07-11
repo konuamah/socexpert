@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
+/* 🌈 Global colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f9fdfd;  /* Soft Sky Blue */
+  --foreground: #171717;  /* Almost black text */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 🅰️ Load Aeonik from /public */
+@font-face {
+  font-family: "Aeonik";
+  src: url("/HaasGrotDisp-65Medium.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 🔡 Load Encode Sans from /public */
+@font-face {
+  font-family: "Encode Sans";
+  src: url("/EncodeSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* 🌍 Global base styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Aeonik", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* 📝 Paragraphs use Encode Sans */
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Encode Sans", sans-serif;
+}
+
+
+.goal-item {
+font-family: "Encode Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+
+
+
+/* 🛠️ Optional utility class */
+.font-\[EncodeSans\] {
+  font-family: "Encode Sans", sans-serif !important;
+}
+
+
