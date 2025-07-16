@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/mission/page.js", "src/app/admin/page.tsx"  ],
+, "src/app/mission/page.js", "src/app/admin/page.tsx", "src/app/components/Client-session.jsx"  ],
   "exclude": [
     "node_modules"
   ]

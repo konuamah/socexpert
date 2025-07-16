@@ -1,4 +1,6 @@
+// app/layout.js
 import "./globals.css";
+import ClientSession from "./components/client-session";
 
 export const metadata = {
   title: {
@@ -36,7 +38,7 @@ export const metadata = {
   creator: "Slamm SOC Experts",
   publisher: "Slamm SOC Experts",
   manifest: "/site.webmanifest",
-  themeColor: "#0f172a", // dark blue/gray tone matching tech style
+  themeColor: "#0f172a",
   viewport: "width=device-width, initial-scale=1",
   robots: {
     index: true,
@@ -83,13 +85,10 @@ export const metadata = {
   },
 };
 
-
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Preload Aeonik font */}
         <link
           rel="preload"
           href="/Aeonik-Regular.woff2"
@@ -97,7 +96,6 @@ export default function RootLayout({ children }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        {/* Optionally preload Inter if needed */}
         <link
           rel="preload"
           href="/Inter-Regular.woff2"
@@ -107,7 +105,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {children}
+        <ClientSession>{children}</ClientSession>
       </body>
     </html>
   );
