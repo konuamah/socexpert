@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://socexperts.com/sitemap.xml

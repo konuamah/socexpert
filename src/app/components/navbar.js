@@ -143,8 +143,8 @@ const FirstFrameHeader = () => {
             <HackingText href="/about" className="">
               About
             </HackingText>
-            <HackingText href="/mission" className="">
-              Mission
+            <HackingText href="/services" className="">
+              Services
             </HackingText>
           </div>
         </div>

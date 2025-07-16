@@ -5,45 +5,64 @@ import { Shield, Lightbulb, Award, Users, Eye, Zap } from 'lucide-react';
 const values = [
   {
     icon: Shield,
-    title: "Integrity",
-    description: "We believe in doing what's right—always. Our clients trust us because we're transparent, consistent, and fiercely protective of their digital world.",
+    title: "Proactive Defence",
+    description: "We believe in anticipating threats before they cause harm. Our SOC is built to detect early signals, respond swiftly, and stay ahead of adversaries.",
     accent: "from-blue-500 to-indigo-600"
   },
   {
-    icon: Lightbulb,
-    title: "Innovation",
-    description: "We challenge conventions to build smarter, faster, and more intuitive defenses. Every solution we deliver is shaped by a relentless drive to rethink what's possible.",
+    icon: Eye,
+    title: "24/7 Vigilance",
+    description: "Cyber threats don't sleep, and neither do we. Our commitment to round-the-clock monitoring ensures your digital assets are always protected.",
     accent: "from-purple-500 to-pink-600"
   },
   {
     icon: Award,
-    title: "Excellence",
-    description: "We sweat the details—because security doesn't forgive sloppiness. From strategy to execution, we demand the best of ourselves and deliver nothing less.",
+    title: "Integrity & Accountability",
+    description: "We operate with transparency, accuracy, and ethical responsibility. Every incident, alert, and action is handled with diligence and honesty.",
     accent: "from-amber-500 to-orange-600"
   },
   {
-    icon: Users,
-    title: "Partnership",
-    description: "Your success is our mission. We work alongside you as trusted advisors, ensuring every solution fits seamlessly into your world.",
+    icon: Shield,
+    title: "Confidentiality & Trust",
+    description: "We treat your data as sacred. We follow strict confidentiality protocols and industry best practices to ensure your trust is never compromised.",
     accent: "from-green-500 to-emerald-600"
   },
   {
-    icon: Eye,
-    title: "Transparency",
-    description: "No hidden agendas, no confusing jargon. We communicate clearly, act with accountability, and keep you informed every step of the way.",
+    icon: Users,
+    title: "Collaboration & Communication",
+    description: "A SOC isn't just a technical service; it's a partnership. We work together with clients, IT teams, and stakeholders to build resilience together.",
     accent: "from-cyan-500 to-blue-600"
   },
   {
     icon: Zap,
-    title: "Agility",
-    description: "In a world where threats evolve daily, we stay ahead. Our adaptive approach ensures rapid response and continuous improvement.",
+    title: "Continuous Improvement",
+    description: "Threats evolve, and so do we. Through regular training, red teaming, and threat hunting, we ensure our defences are always one step ahead.",
     accent: "from-red-500 to-pink-600"
+  },
+  {
+    icon: Lightbulb,
+    title: "Threat Intelligence Driven",
+    description: "We base our actions on real-world, up-to-date threat intelligence to ensure our defences are rooted in relevance and context.",
+    accent: "from-indigo-500 to-purple-600"
+  },
+  {
+    icon: Users,
+    title: "Client-Centric Protection",
+    description: "We align our security operations with your business needs. Your uptime, reputation, and compliance are always our top priorities.",
+    accent: "from-teal-500 to-green-600"
+  },
+  {
+    icon: Award,
+    title: "Innovation with Purpose",
+    description: "We embrace automation, AI, and new tools, not for the buzz, but to improve detection speed, reduce false positives, and optimize response.",
+    accent: "from-orange-500 to-red-600"
   }
 ];
 
 const Values = () => {
   const [visibleItems, setVisibleItems] = useState(new Array(values.length).fill(false));
   const itemRefs = useRef([]);
+  const scrollContainerRef = useRef(null);
 
   useEffect(() => {
     const observers = itemRefs.current.map((ref, index) => {
@@ -72,8 +91,8 @@ const Values = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-gray-50/30  to-white">
-      <div className="max-w-7xl  mx-auto px-6 lg:px-8">
+    <section className="py-24 bg-gradient-to-b from-white via-gray-50/30 to-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl lg:text-5xl font-bold text-blue-600 mb-6 tracking-tight">
@@ -85,10 +104,78 @@ const Values = () => {
           </p>
         </div>
 
-        {/* Values Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        {/* Mobile: Horizontal Scrolling */}
+        <div className="lg:hidden">
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch'
+            }}
+          >
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <div
+                  key={value.title}
+                  ref={(el) => (itemRefs.current[index] = el)}
+                  className={`group relative transform transition-all duration-700 ease-out flex-shrink-0 w-80 snap-center ${
+                    visibleItems[index]
+                      ? 'translate-y-0 opacity-100'
+                      : 'translate-y-8 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300 h-full">
+                    {/* Gradient accent line */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
+
+                    {/* Icon container */}
+                    <div className="flex items-center mb-6">
+                      <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-xl font-bold text-gray-900 ml-4 group-hover:text-gray-700 transition-colors duration-300">
+                        {value.title}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed text-base">
+                      {value.description}
+                    </p>
+
+                    {/* Subtle hover effect background */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          
+          {/* Scroll indicator dots */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {values.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                  visibleItems[index] ? 'bg-blue-600' : 'bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Grid Layout */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12">
           {values.map((value, index) => {
             const Icon = value.icon;
+            const isLastOddItem = values.length % 2 === 1 && index === values.length - 1;
+            
             return (
               <div
                 key={value.title}
@@ -97,10 +184,10 @@ const Values = () => {
                   visibleItems[index]
                     ? 'translate-y-0 opacity-100'
                     : 'translate-y-8 opacity-0'
-                }`}
+                } ${isLastOddItem ? 'lg:col-span-2 lg:max-w-2xl lg:mx-auto' : ''}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="relative bg-white  rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100 hover:shadow-xl  hover:border-blue-300  transition-all duration-300 h-full">
+                <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300 h-full">
                   {/* Gradient accent line */}
                   <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
 
@@ -144,6 +231,16 @@ const Values = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };
