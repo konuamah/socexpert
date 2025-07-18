@@ -11,7 +11,7 @@ const GoalsAndCTASection = () => {
   return (
     <>
       {/* Strategic Goals */}
-      <div className="border-t border-gray-100 p-12 bg-white lg:p-16">
+      <div className=" p-12 lg:p-16">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mb-6 shadow-lg">
             <Trophy className="w-10 h-10 text-white" />

@@ -1,6 +1,8 @@
+
 // app/layout.js
 import "./globals.css";
 import ClientSession from "./components/client-session";
+import TransitionWrapper from "./components/transition-wrapper";
 
 export const metadata = {
   title: {
@@ -105,7 +107,8 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <ClientSession>{children}</ClientSession>
+        <TransitionWrapper>     <ClientSession>{children}</ClientSession></TransitionWrapper>
+   
       </body>
     </html>
   );

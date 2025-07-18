@@ -30,14 +30,14 @@ export default function WhyChooseUs() {
   return (
     <section className="relative py-24 px-6 md:px-10 overflow-hidden">
       {/* Soft grid background */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5 pointer-events-none" />
+      <div className="absolute inset-0  opacity-5 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Heading */}
         <h2 className="text-4xl md:text-5xl font-semibold text-center text-blue-700 mb-4 tracking-tight leading-tight">
           Why Choose Us
         </h2>
-        <div className="mx-auto w-20 h-1 bg-blue-200 rounded-full mb-14" />
+      
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

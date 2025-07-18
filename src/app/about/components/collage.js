@@ -2,7 +2,7 @@
 
 export default function CollageGrid() {
   return (
-    <div className="w-full bg-gray-100 py-8 overflow-x-auto">
+    <div className="w-full  py-8 overflow-x-auto">
       <div className="min-w-[1024px] grid grid-cols-4 grid-rows-2 gap-2 px-4">
         {/* Tall Image - Left */}
         <div className="row-span-2 h-[600px] overflow-hidden rounded-3xl">

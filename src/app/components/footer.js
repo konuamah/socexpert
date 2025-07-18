@@ -1,3 +1,5 @@
+"use client";
+import Link from "next/link";
 import {
   FaFacebookF,
   FaTwitter,
@@ -13,10 +15,18 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold text-lg mb-4">Quick Links</h4>
           <ul className="space-y-3 text-sm font-[EncodeSans]">
-            <li><a href="/" className="hover:underline">Home</a></li>
-            <li><a href="/about" className="hover:underline">About</a></li>
-            <li><a href="/services" className="hover:underline">Services</a></li>
-            <li><a href="/contact" className="hover:underline">Contact</a></li>
+            <li>
+              <Link href="/" className="hover:underline">Home</Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:underline">About</Link>
+            </li>
+            <li>
+              <Link href="/services" className="hover:underline">Services</Link>
+            </li>
+            <li>
+              <Link href="/blog" className="hover:underline">Blog</Link>
+            </li>
           </ul>
         </div>
 

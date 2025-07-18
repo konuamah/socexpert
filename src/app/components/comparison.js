@@ -57,7 +57,7 @@ export default function CybersecurityComparison() {
   ];
 
   return (
-    <section className="min-h-screen px-6 py-24 bg-[#f9f9fc]">
+    <section className="min-h-screen px-6 py-24">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">

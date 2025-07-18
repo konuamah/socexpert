@@ -43,7 +43,7 @@ export default function AboutPage() {
         <section><Values /></section>
         <section><MissionVisionSection/></section>
      <section><GoalsAndCTASection/></section>
-        <section><LeadershipTeam /></section>
+    
 
         <Footer />
       </div>

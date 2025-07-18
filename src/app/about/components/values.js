@@ -91,7 +91,7 @@ const Values = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-gray-50/30 to-white">
+    <section className="py-24 ">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20">

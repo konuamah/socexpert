@@ -36,8 +36,8 @@ export default function Home() {
         <link rel="canonical" href="https://slammsoc.com" />
       </Head>
 
-      <div className="min-h-screen bg-[#f9f9f9] text-black flex flex-col">
-        <main className="flex-1">
+      <div className="min-h-screen flex flex-col">
+       
           <Navbar />
           <Hero
      title="Slamm SOC"
@@ -53,7 +53,7 @@ export default function Home() {
           <div className="px-4 md:px-8 py-6">
             <About />
           </div>
-        </main>
+
         <Footer />
       </div>
     </>

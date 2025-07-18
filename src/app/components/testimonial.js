@@ -27,7 +27,7 @@ export default function TrustedTeamsSection() {
   const groups = groupLogos(logos, 6);
 
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24 ">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center px-6">
         {/* Text Column */}
         <div className="space-y-6">

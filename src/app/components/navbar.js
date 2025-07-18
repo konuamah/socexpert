@@ -8,55 +8,6 @@ const FirstFrameHeader = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const idleTimerRef = useRef(null);
 
-  const useHackingText = (text) => {
-    const [displayText, setDisplayText] = useState(text);
-    const [isHacking, setIsHacking] = useState(false);
-    const intervalRef = useRef(null);
-    const chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
-
-    const startHacking = () => {
-      if (isHacking) return;
-      setIsHacking(true);
-      let iterations = 0;
-      const maxIterations = text.length * 3;
-
-      intervalRef.current = setInterval(() => {
-        setDisplayText(
-          text
-            .split("")
-            .map((char, index) => {
-              if (char === " ") return " ";
-              if (iterations < index * 3) {
-                return chars[Math.floor(Math.random() * chars.length)];
-              }
-              return char;
-            })
-            .join("")
-        );
-
-        iterations++;
-        if (iterations >= maxIterations) {
-          clearInterval(intervalRef.current);
-          setDisplayText(text);
-          setIsHacking(false);
-        }
-      }, 50);
-    };
-
-    const stopHacking = () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      setDisplayText(text);
-      setIsHacking(false);
-    };
-
-    useEffect(() => {
-      return () => intervalRef.current && clearInterval(intervalRef.current);
-    }, []);
-
-    return { displayText, startHacking, stopHacking };
-  };
-
   const resetIdleTimer = () => {
     setIsIdle(false);
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
@@ -80,21 +31,6 @@ const FirstFrameHeader = () => {
       if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     };
   }, []);
-
-  const HackingText = ({ children, href, className, onClick }) => {
-    const { displayText, startHacking, stopHacking } = useHackingText(children);
-    return (
-      <Link
-        href={href}
-        className={`relative inline-block font-mono font-medium transition-opacity hover:opacity-90 ${className}`}
-        onMouseEnter={startHacking}
-        onMouseLeave={stopHacking}
-        onClick={onClick}
-      >
-        {displayText}
-      </Link>
-    );
-  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -129,7 +65,7 @@ const FirstFrameHeader = () => {
                 src="/logo.png"
                 alt="Logo"
                 width={100}
-                height={60}
+                height={33}
                 className={isIdle ? "animate-pulse" : ""}
               />
             </div>
@@ -158,18 +94,18 @@ const FirstFrameHeader = () => {
                 isIdle ? "animate-glow" : ""
               }`}
             >
-              <HackingText href="/" className="">
+              <Link href="/" className="font-mono font-medium hover:opacity-90 transition-opacity">
                 Home
-              </HackingText>
-              <HackingText href="/about" className="">
+              </Link>
+              <Link href="/about" className="font-mono font-medium hover:opacity-90 transition-opacity">
                 About
-              </HackingText>
-              <HackingText href="/services" className="">
+              </Link>
+              <Link href="/services" className="font-mono font-medium hover:opacity-90 transition-opacity">
                 Services
-              </HackingText>
-              <HackingText href="/blogs" className="">
+              </Link>
+              <Link href="/blog" className="font-mono font-medium hover:opacity-90 transition-opacity">
                 Blogs
-              </HackingText>
+              </Link>
             </div>
           </div>
 
@@ -212,7 +148,7 @@ const FirstFrameHeader = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-16 sm:top-20 right-0 w-64 sm:w-80 h-screen border-l text-whi border-white/10 z-40 md:hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-16 sm:top-20 right-0 w-64 sm:w-80 h-screen border-l text-white border-white/10 z-40 md:hidden transform transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -222,18 +158,34 @@ const FirstFrameHeader = () => {
               isIdle ? "animate-glow" : ""
             }`}
           >
-            <HackingText href="/" className="py-3 border-b border-white/10" onClick={closeMobileMenu}>
+            <Link
+              href="/"
+              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              onClick={closeMobileMenu}
+            >
               Home
-            </HackingText>
-            <HackingText href="/about" className="py-3 border-b border-white/10" onClick={closeMobileMenu}>
+            </Link>
+            <Link
+              href="/about"
+              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              onClick={closeMobileMenu}
+            >
               About
-            </HackingText>
-            <HackingText href="/services" className="py-3 border-b border-white/10" onClick={closeMobileMenu}>
+            </Link>
+            <Link
+              href="/services"
+              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              onClick={closeMobileMenu}
+            >
               Services
-            </HackingText>
-            <HackingText href="/blog" className="py-3 border-b border-white/10" onClick={closeMobileMenu}>
-              Blogsss
-            </HackingText>
+            </Link>
+            <Link
+              href="/blog"
+              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              onClick={closeMobileMenu}
+            >
+              Blogs
+            </Link>
           </div>
         </div>
       </div>

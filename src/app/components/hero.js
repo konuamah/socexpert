@@ -26,7 +26,7 @@ export default function Hero({
   }, [fadeOutAfterMs]);
 
   return (
-    <section className="relative z-0 min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+    <section className="relative z-0 h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
       {/* First Video */}
       <video
         ref={videoRef1}

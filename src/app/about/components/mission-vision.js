@@ -3,7 +3,7 @@ import { Target, Eye } from 'lucide-react';
 
 const MissionVisionSection = () => {
   return (
-    <div className="grid lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x bg-white">
+    <div className="grid lg:grid-cols-2 divide-y lg:divide-y-0 ">
       {/* Mission */}
       <div className="p-12 lg:p-16">
         <div className="text-center mb-10">

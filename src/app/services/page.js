@@ -12,7 +12,7 @@ export default function Services() {
         <main className="flex-1">
           <FirstFrameHeader />
           <Hero
-            highlight="24/7 Proactive Cybersecurity. Real-time Detection. Rapid Response." 
+            highlight="24/7 cybersecurity with real-time response." 
 
             videoSrc="/services-hero.mp4"
           />
