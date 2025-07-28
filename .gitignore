@@ -1,8 +1,11 @@
 # Ignore everything by default
 *
 
-# ✅ Include only the files needed for deployment
-!.next/
+# Include next/ folder and all its contents
+!next/
+!next/**
+
+# Include other necessary files/folders
 !public/
 !package.json
 !next.config.js
@@ -10,17 +13,17 @@
 !yarn.lock
 !package-lock.json
 
-# Optional: include your process manager files (e.g. PM2 or Docker)
+# Optional: process manager files
 !ecosystem.config.js
 !Dockerfile
 !docker-compose.yml
 
-# ✅ Allow scripts (optional)
+# Scripts
 !scripts/
 !*.sh
 
-# ✅ Don't ignore this file itself
+# Don't ignore this file itself
 !.gitignore
 
-# You can add .env.example if needed for reference
+# Environment example file
 !.env.example
