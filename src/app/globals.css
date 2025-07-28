@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 🌈 Global colors */
+:root {
+  --background: #f9fdfd;  /* Soft Sky Blue */
+  --foreground: #171717;  /* Almost black text */
+}
+
+/* 🅰️ Load Aeonik from /public - OPTIMIZED for LCP */
+@font-face {
+  font-family: "Aeonik";
+  src: url("/HaasGrotDisp-65Medium.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Critical for LCP performance */
+}
+
+/* 🔡 Load Encode Sans from /public - CRITICAL for LCP */
+@font-face {
+  font-family: "Encode Sans";
+  src: url("/EncodeSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* This prevents render blocking */
+}
+
+/* 🌍 Global base styles - OPTIMIZED */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Aeonik", system-ui, -apple-system, sans-serif; /* Added system fallbacks */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 📝 Paragraphs use Encode Sans - LCP CRITICAL */
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Encode Sans", system-ui, -apple-system, sans-serif; /* Added system fallbacks */
+}
+
+.goal-item {
+  font-family: "Encode Sans", system-ui, -apple-system, sans-serif; /* Added system fallbacks */
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+/* 🛠️ Optional utility class */
+.font-\[EncodeSans\] {
+  font-family: "Encode Sans", system-ui, -apple-system, sans-serif !important; /* Added system fallbacks */
+}
+
+
+.page-wrapper {
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.page-wrapper.fadeOut {
+  opacity: 0;
+}
+
+.page-wrapper.fadeIn {
+  opacity: 1;
+}
