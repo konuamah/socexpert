@@ -76,7 +76,7 @@ export default function Services() {
           <section>
            <Hero
                       title="Slamm SOC Experts"
-                      highlight="About Us"
+                      highlight="Services"
                       subtitle="AI-driven excellence in cybersecurity and SOC services"
                       videoSrc="/services-hero.mov"
                     />
