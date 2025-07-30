@@ -8,14 +8,18 @@ export default function Hero({
   videoSrc,
   fadeOutAfterMs = 5000,
   gradientClasses = "from-black via-gray-900 to-black",
+  posterImage = "", // ✅ new optional prop
 }) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef(null);
 
   // Gradient style for root section
-  const gradientStyle = useMemo(() => ({
-    background: `linear-gradient(to bottom, var(--tw-gradient-stops))`,
-  }), [gradientClasses]);
+  const gradientStyle = useMemo(
+    () => ({
+      background: `linear-gradient(to bottom, var(--tw-gradient-stops))`,
+    }),
+    [gradientClasses]
+  );
 
   // Fade out video after set time
   useEffect(() => {
@@ -63,7 +67,7 @@ export default function Hero({
         preload="auto"
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
-        poster=""
+        poster={posterImage} // ✅ poster image used here
       >
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
