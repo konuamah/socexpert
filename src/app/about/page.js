@@ -6,13 +6,10 @@ import Hero from "../components/hero";
 import FirstFrameHeader from "../components/navbar";
 import Footer from "../components/footer";
 
-const Collage = dynamic(() => import("./components/collage"));
 const CompanyHistory = dynamic(() => import("./components/companyhistory"));
 const Values = dynamic(() => import("./components/values"));
 const MissionVisionSection = dynamic(() => import("./components/mission-vision"));
 const GoalsAndCTASection = dynamic(() => import("./components/goals-cta"));
-const LeadershipTeam = dynamic(() => import("./components/leadership-team"));
-
 export default function AboutPage() {
   return (
     <>
@@ -72,7 +69,7 @@ export default function AboutPage() {
           </section>
 
           <section>
-            <Collage />
+   
           </section>
 
           <section>
