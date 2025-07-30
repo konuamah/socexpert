@@ -1,8 +1,8 @@
-// app/layout.js
 import "./globals.css";
 
 import TransitionWrapper from "./components/transition-wrapper";
 import FirstFrameHeader from "./components/navbar";
+import LayoutWithLoader from "./components/layout-loader";
 
 export const metadata = {
   title: {
@@ -40,8 +40,6 @@ export const metadata = {
   creator: "Slamm SOC Experts",
   publisher: "Slamm SOC Experts",
   manifest: "/site.webmanifest",
-  themeColor: "#0f172a",
-  viewport: "width=device-width, initial-scale=1",
   robots: {
     index: true,
     follow: true,
@@ -87,11 +85,19 @@ export const metadata = {
   },
 };
 
+// ✅ Move themeColor and viewport here:
+export function generateViewport() {
+  return {
+    themeColor: "#0f172a",
+    width: "device-width",
+    initialScale: 1,
+  };
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* FIXED: Only preload fonts that actually exist and are used in LCP */}
         <link
           rel="preload"
           href="/EncodeSans-Regular.woff2"
@@ -99,28 +105,12 @@ export default function RootLayout({ children }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        {/* REMOVED: These were causing 5.78s render delay
-        <link
-          rel="preload"
-          href="/Aeonik-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/Inter-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        */}
       </head>
       <body>
-        <FirstFrameHeader />
-     
-          {children}
+        <LayoutWithLoader>
 
+        {children}
+        </LayoutWithLoader>
       </body>
     </html>
   );

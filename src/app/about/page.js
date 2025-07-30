@@ -99,11 +99,6 @@ export default function AboutPage() {
             </article>
           </section>
 
-          <section>
-            <article>
-              <LeadershipTeam />
-            </article>
-          </section>
         </main>
 
         <footer>

@@ -184,7 +184,7 @@ export default function CybersecurityComparison() {
         {/* Attribution */}
         <div className="text-center mt-20">
           <p className="text-slate-500 text-sm">
-            Source:{" "}
+           
             <a
               href="https://www.ibm.com/topics/artificial-intelligence-cybersecurity"
               target="_blank"

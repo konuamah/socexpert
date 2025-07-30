@@ -1,36 +1,10 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 const FirstFrameHeader = () => {
-  const [isIdle, setIsIdle] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const idleTimerRef = useRef(null);
-
-  const resetIdleTimer = () => {
-    setIsIdle(false);
-    if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
-    idleTimerRef.current = setTimeout(() => setIsIdle(true), 200);
-  };
-
-  useEffect(() => {
-    resetIdleTimer();
-    const handleActivity = () => resetIdleTimer();
-
-    window.addEventListener("mousemove", handleActivity);
-    window.addEventListener("keydown", handleActivity);
-    window.addEventListener("scroll", handleActivity);
-    window.addEventListener("click", handleActivity);
-
-    return () => {
-      window.removeEventListener("mousemove", handleActivity);
-      window.removeEventListener("keydown", handleActivity);
-      window.removeEventListener("scroll", handleActivity);
-      window.removeEventListener("click", handleActivity);
-      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
-    };
-  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -42,8 +16,8 @@ const FirstFrameHeader = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full h-16 sm:h-20 z-50 flex items-center text-white bg-gradient-to-b from-black/70 via-black/30 to-transparent backdrop-blur-sm border-b border-white/10">
-        <div className="max-w-[2560px] w-full mx-auto uppercase text-sm sm:text-base lg:text-[18px] tracking-[0.4px] sm:tracking-[0.8px] px-3 sm:px-4 flex items-center font-inter">
+      <header className="fixed top-0 left-0 w-full h-16 sm:h-20 z-50 flex items-center text-white bg-gradient-to-b from-black/70 via-black/30 to-transparent backdrop-blur-sm ">
+        <div className="max-w-[2560px] w-full mx-auto uppercase text-xs sm:text-sm lg:text-base tracking-wide sm:tracking-wide px-3 sm:px-4 flex items-center font-inter">
           {/* Logo */}
           <Link
             href="/"
@@ -56,56 +30,50 @@ const FirstFrameHeader = () => {
                 alt="Logo"
                 width={260}
                 height={80}
-                className={`xl:w-[150px] xl:h-[80px] ${isIdle ? "animate-pulse" : ""}`}
+                className={`xl:w-[150px] xl:h-[80px] }`}
               />
             </div>
             {/* Tablet Logo */}
             <div className="hidden sm:block lg:hidden">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={100}
-                height={33}
-                className={isIdle ? "animate-pulse" : ""}
-              />
+              <Image src="/logo.png" alt="Logo" width={100} height={33} />
             </div>
             {/* Mobile Logo */}
             <div className="sm:hidden">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={100}
-                height={20}
-                className={isIdle ? "animate-pulse" : ""}
-              />
+              <Image src="/logo.png" alt="Logo" width={100} height={20} />
             </div>
 
-            <div
-              className={`absolute right-0 top-0 w-px h-full ${
-                isIdle ? "bg-white/40 shadow-md animate-pulse" : "bg-white/20"
-              }`}
-            />
+            <div className="absolute right-0 top-0 w-px h-full " />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 items-center justify-center h-full">
-            <div
-              className={`flex items-center gap-4 lg:gap-6 xl:gap-10 text-sm sm:text-base lg:text-[18px] tracking-[0.4px] sm:tracking-[0.8px] ${
-                isIdle ? "animate-glow" : ""
-              }`}
-            >
-              <Link href="/" className="font-mono font-medium hover:opacity-90 transition-opacity">
+            <div className="flex items-center gap-4 lg:gap-6 xl:gap-10 text-xs sm:text-sm lg:text-base tracking-wide sm:tracking-wide">
+              <Link
+                href="/"
+                className="font-normal hover:opacity-90 transition-opacity"
+              >
                 Home
               </Link>
-              <Link href="/about" className="font-mono font-medium hover:opacity-90 transition-opacity">
+              <Link
+                href="/about"
+                className="font-normal hover:opacity-90 transition-opacity"
+              >
                 About
               </Link>
-              <Link href="/services" className="font-mono font-medium hover:opacity-90 transition-opacity">
+              <Link
+                href="/services"
+                className="font-normal hover:opacity-90 transition-opacity"
+              >
                 Services
               </Link>
-              <Link href="/blog" className="font-mono font-medium hover:opacity-90 transition-opacity">
+              {/*
+              <Link
+                href="/blog"
+                className="font-normal hover:opacity-90 transition-opacity"
+              >
                 Blogs
               </Link>
+              */}
             </div>
           </div>
 
@@ -153,59 +121,40 @@ const FirstFrameHeader = () => {
         }`}
       >
         <div className="flex flex-col p-6 pt-8 space-y-6">
-          <div
-            className={`flex flex-col space-y-6 text-lg sm:text-xl tracking-[0.8px] uppercase ${
-              isIdle ? "animate-glow" : ""
-            }`}
-          >
+          <div className="flex flex-col space-y-6 text-sm sm:text-base tracking-wide uppercase">
             <Link
               href="/"
-              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              className="font-normal py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
               onClick={closeMobileMenu}
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              className="font-normal py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
               onClick={closeMobileMenu}
             >
               About
             </Link>
             <Link
               href="/services"
-              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              className="font-normal py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
               onClick={closeMobileMenu}
             >
               Services
             </Link>
+            {/*
             <Link
               href="/blog"
-              className="font-mono font-medium py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
+              className="font-normal py-3 border-b border-white/10 hover:opacity-90 transition-opacity"
               onClick={closeMobileMenu}
             >
               Blogs
             </Link>
+            */}
           </div>
         </div>
       </div>
-
-      {/* Glow Animation */}
-      <style jsx global>{`
-        @keyframes glow {
-          0%,
-          100% {
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-          }
-          50% {
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
-              0 0 20px rgba(255, 255, 255, 0.2);
-          }
-        }
-        .animate-glow {
-          animation: glow 3s ease-in-out infinite;
-        }
-      `}</style>
     </>
   );
 };

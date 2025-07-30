@@ -35,21 +35,9 @@ export default function ContactCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <Link
-            href="/contact"
-            className="bg-black text-white dark:bg-white dark:text-black px-6 py-3 text-base rounded-2xl shadow-md hover:shadow-lg transition"
-            aria-label="Contact Slamm SOC Experts"
-          >
-            Contact Us
-          </Link>
+        
 
-          <Link
-            href="/get-started"
-            className="border border-neutral-400 dark:border-neutral-700 text-neutral-900 dark:text-white px-6 py-3 text-base rounded-2xl hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
-            aria-label="Start with Slamm SOC Experts"
-          >
-            Get Started
-          </Link>
+          
         </motion.div>
       </div>
     </section>

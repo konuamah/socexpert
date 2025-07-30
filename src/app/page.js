@@ -11,7 +11,6 @@ const About = dynamic(() => import("./components/about"));
 const ServicesPreview = dynamic(() => import("./components/service"));
 const CybersecurityComparison = dynamic(() => import("./components/comparison"));
 const WhyChooseUs = dynamic(() => import("./components/why-choose-us"));
-const ClientsAndTestimonials = dynamic(() => import("./components/testimonial"));
 
 export default function Home() {
   return (
@@ -81,7 +80,7 @@ export default function Home() {
         <CybersecurityComparison />
         <WhyChooseUs />
         <ServicesPreview />
-        <ClientsAndTestimonials />
+     
 
         <div className="px-4 md:px-8 py-6">
           <About />

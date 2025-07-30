@@ -1,43 +1,35 @@
 import React from 'react';
 
 const CompanyHistory = () => {
-  const timelineData = [
-    {
-      year: "2018",
-      title: "Company Established",
-      description: "Slamm SOC Experts was founded with a vision to provide world-class cybersecurity services to African enterprises, focusing on security operations center excellence."
-    },
-    {
-      year: "2019",
-      title: "Secured First Major Cybersecurity Contract",
-      description: "Awarded our first enterprise client contract, delivering 24/7 security operations center (SOC) services to a leading financial institution in Africa."
-    },
-    {
-      year: "2020",
-      title: "Cybersecurity Team Expansion",
-      description: "Expanded our expert cybersecurity team to 15+ certified security professionals and added advanced threat hunting services."
-    },
-    {
-      year: "2021",
-      title: "Client Growth Milestone",
-      description: "Reached over 20 enterprise clients across West Africa, becoming a trusted cybersecurity partner in the region."
-    },
-    {
-      year: "2022",
-      title: "Launched Innovation Hub",
-      description: "Introduced our proprietary threat intelligence platform and opened a second SOC operations center in Lagos, Nigeria."
-    },
-    {
-      year: "2023",
-      title: "Recognized as Regional Leader in Cybersecurity",
-      description: "Became the leading SOC provider in West Africa with over 50 enterprise clients and achieved ISO 27001 certification."
-    },
-    {
-      year: "2024",
-      title: "Received Global Cybersecurity Awards",
-      description: "Awarded international cybersecurity excellence recognition and expanded services with AI-powered threat detection capabilities."
-    }
-  ];
+const timelineData = [
+  {
+    year: "2008",
+    title: "Company Founded",
+    description: "Founded as Slamm Technologies."
+  },
+  {
+    year: "2017",
+    title: "West Africa Expansion",
+    description: "Expanded operations into West Africa."
+  },
+  {
+    year: "2021",
+    title: "Security Operations Division Established",
+    description: "Launched dedicated Security Operations Division."
+  },
+  {
+    year: "2022",
+    title: "U.S. Cyber Fusion Center Inaugurated",
+    description: "Opened U.S. Cyber Fusion Center to enhance threat response capabilities."
+  },
+  {
+    year: "2024",
+    title: "(ISC)² Inclusion Impact Award Received",
+    description: "Recognized for leadership in inclusion and diversity in cybersecurity."
+  }
+];
+
+
 
   return (
     <section 

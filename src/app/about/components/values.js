@@ -1,4 +1,6 @@
-import { Shield, Lightbulb, Award, Users, Eye, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Shield, Lightbulb, Award, Users, Eye, Zap, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { ContactModal } from '../../components/modal'; // Adjust path as needed
 
 const values = [
   {
@@ -67,130 +69,149 @@ const values = [
 ];
 
 const Values = () => {
-  return (
-    <section className="py-24" role="main" aria-labelledby="values-heading">
-      {/* SEO-optimized structured data */}
-    
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* SEO-optimized header */}
-        <header className="text-center mb-20">
-          <h1 id="values-heading" className="text-4xl lg:text-5xl font-bold text-blue-600 mb-6 tracking-tight">
-            Cybersecurity SOC Services - Our Core Values
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Discover our cybersecurity principles that guide everything we do—from threat detection to incident response. 
-            These core values form the foundation of our Security Operations Center (SOC) services and client protection.
-          </p>
-        </header>
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-        {/* Mobile: Card Layout */}
-        <div className="lg:hidden">
-          <div className="grid gap-6">
+  // Contact information
+  const customContactInfo = {
+    phones: ["+233 (0) 552280177", "+233 (0) 546875600"],
+    email: "info@slammghana.com",
+    social: [
+      { name: "Twitter", url: "https://twitter.com/slammgh", icon: Twitter },
+      { name: "LinkedIn", url: "https://gh.linkedin.com/company/slammghana", icon: Linkedin },
+      { name: "Instagram", url: "https://www.instagram.com/slammgh/", icon: Instagram }
+    ]
+  };
+
+  return (
+    <>
+      <section className="py-24" role="main" aria-labelledby="values-heading">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* SEO-optimized header */}
+          <header className="text-center mb-20">
+            <h1 id="values-heading" className="text-4xl lg:text-5xl font-bold text-blue-600 mb-6 tracking-tight">
+              Cybersecurity SOC Services - Our Core Values
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Discover our cybersecurity principles that guide everything we do—from threat detection to incident response. 
+              These core values form the foundation of our Security Operations Center (SOC) services and client protection.
+            </p>
+          </header>
+
+          {/* Mobile: Card Layout */}
+          <div className="lg:hidden">
+            <div className="grid gap-6">
+              {values.map((value, index) => {
+                const Icon = value.icon;
+                return (
+                  <article
+                    key={value.title}
+                    className="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300"
+                    itemScope
+                    itemType="https://schema.org/Service"
+                  >
+                    {/* Gradient accent line */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
+
+                    {/* Icon container */}
+                    <div className="flex items-center mb-6">
+                      <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      
+                      {/* Title */}
+                      <h2 className="text-xl font-bold text-gray-900 ml-4 group-hover:text-gray-700 transition-colors duration-300" itemProp="name">
+                        {value.title}
+                      </h2>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed text-base" itemProp="description">
+                      {value.description}
+                    </p>
+
+                    {/* SEO keywords (hidden) */}
+                    <meta itemProp="keywords" content={value.keywords} />
+
+                    {/* Subtle hover effect background */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop: Grid Layout */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12">
             {values.map((value, index) => {
               const Icon = value.icon;
+              const isLastOddItem = values.length % 2 === 1 && index === values.length - 1;
+              
               return (
                 <article
                   key={value.title}
-                  className="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300"
+                  className={`group relative ${isLastOddItem ? 'lg:col-span-2 lg:max-w-2xl lg:mx-auto' : ''}`}
                   itemScope
                   itemType="https://schema.org/Service"
                 >
-                  {/* Gradient accent line */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
+                  <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300 h-full">
+                    {/* Gradient accent line */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
 
-                  {/* Icon container */}
-                  <div className="flex items-center mb-6">
-                    <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
-                      <Icon className="w-6 h-6 text-white" />
+                    {/* Icon container */}
+                    <div className="flex items-center mb-6">
+                      <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      
+                      {/* Title */}
+                      <h2 className="text-2xl font-bold text-gray-900 ml-4 group-hover:text-gray-700 transition-colors duration-300" itemProp="name">
+                        {value.title}
+                      </h2>
                     </div>
-                    
-                    {/* Title */}
-                    <h2 className="text-xl font-bold text-gray-900 ml-4 group-hover:text-gray-700 transition-colors duration-300" itemProp="name">
-                      {value.title}
-                    </h2>
+
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed text-lg" itemProp="description">
+                      {value.description}
+                    </p>
+
+                    {/* SEO keywords (hidden) */}
+                    <meta itemProp="keywords" content={value.keywords} />
+
+                    {/* Subtle hover effect background */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
-
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed text-base" itemProp="description">
-                    {value.description}
-                  </p>
-
-                  {/* SEO keywords (hidden) */}
-                  <meta itemProp="keywords" content={value.keywords} />
-
-                  {/* Subtle hover effect background */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </article>
               );
             })}
           </div>
-        </div>
 
-        {/* Desktop: Grid Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {values.map((value, index) => {
-            const Icon = value.icon;
-            const isLastOddItem = values.length % 2 === 1 && index === values.length - 1;
-            
-            return (
-              <article
-                key={value.title}
-                className={`group relative ${isLastOddItem ? 'lg:col-span-2 lg:max-w-2xl lg:mx-auto' : ''}`}
-                itemScope
-                itemType="https://schema.org/Service"
+          {/* Bottom CTA */}
+          <footer className="text-center mt-20">
+            <div className="inline-block">
+              <p className="text-lg text-gray-600 mb-6">
+                Ready to experience the difference our cybersecurity values make?
+              </p>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-offset-2"
+                aria-label="Contact us about our cybersecurity services"
               >
-                <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300 h-full">
-                  {/* Gradient accent line */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
-
-                  {/* Icon container */}
-                  <div className="flex items-center mb-6">
-                    <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    
-                    {/* Title */}
-                    <h2 className="text-2xl font-bold text-gray-900 ml-4 group-hover:text-gray-700 transition-colors duration-300" itemProp="name">
-                      {value.title}
-                    </h2>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed text-lg" itemProp="description">
-                    {value.description}
-                  </p>
-
-                  {/* SEO keywords (hidden) */}
-                  <meta itemProp="keywords" content={value.keywords} />
-
-                  {/* Subtle hover effect background */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                </div>
-              </article>
-            );
-          })}
+                Discuss Our Values
+              </button>
+            </div>
+          </footer>
         </div>
+      </section>
 
-        {/* Bottom CTA */}
-        <footer className="text-center mt-20">
-          <div className="inline-block">
-            <p className="text-lg text-gray-600 mb-6">
-              Ready to experience the difference our cybersecurity values make?
-            </p>
-            <a 
-              href="#contact" 
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300"
-              aria-label="Contact us to start your cybersecurity journey"
-            >
-              Start Your Cybersecurity Journey
-              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </footer>
-      </div>
-    </section>
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        contactInfo={customContactInfo}
+        title="Let's Talk Cybersecurity"
+        subtitle="Ready to see our values in action? Get in touch with our SOC experts."
+      />
+    </>
   );
 };
 

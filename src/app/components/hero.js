@@ -60,7 +60,7 @@ export default function Hero({
         muted
         playsInline
         loop
-        preload="metadata"
+        preload="auto"
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
         poster=""
