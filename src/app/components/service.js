@@ -60,7 +60,7 @@ export default function ServicesPreview() {
       </h2>
       <div className="mx-auto w-20 h-1 bg-blue-200 rounded-full mb-14" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] gap-8">
         {services.map(({ title, description, icon: Icon }) => (
           <div
             key={title}

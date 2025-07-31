@@ -1,6 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Shield, Lightbulb, Award, Users, Eye, Zap, Twitter, Linkedin, Instagram } from 'lucide-react';
-import { ContactModal } from '../../components/modal'; // Adjust path as needed
+
+// Mock ContactModal component for demonstration
+const ContactModal = ({ isOpen, onClose, contactInfo, title, subtitle }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+        </div>
+        <p className="text-gray-600 mb-6">{subtitle}</p>
+        <div className="space-y-4">
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-2">Phone Numbers:</h4>
+            {contactInfo.phones.map((phone, index) => (
+              <p key={index} className="text-gray-600">{phone}</p>
+            ))}
+          </div>
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-2">Email:</h4>
+            <p className="text-gray-600">{contactInfo.email}</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-2">Social Media:</h4>
+            <div className="flex space-x-4">
+              {contactInfo.social.map((social, index) => {
+                const Icon = social.icon;
+                return (
+                  <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" 
+                     className="flex items-center space-x-2 text-blue-600 hover:text-blue-800">
+                    <Icon className="w-5 h-5" />
+                    <span>{social.name}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const values = [
   {
@@ -70,6 +113,7 @@ const values = [
 
 const Values = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Contact information
   const customContactInfo = {
@@ -82,9 +126,12 @@ const Values = () => {
     ]
   };
 
+  // Create duplicated array for seamless looping
+  const duplicatedValues = [...values, ...values];
+
   return (
     <>
-      <section className="py-24" role="main" aria-labelledby="values-heading">
+      <section className="py-24 overflow-hidden" role="main" aria-labelledby="values-heading">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* SEO-optimized header */}
           <header className="text-center mb-20">
@@ -97,92 +144,78 @@ const Values = () => {
             </p>
           </header>
 
-          {/* Mobile: Card Layout */}
-          <div className="lg:hidden">
-            <div className="grid gap-6">
-              {values.map((value, index) => {
-                const Icon = value.icon;
-                return (
-                  <article
-                    key={value.title}
-                    className="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300"
-                    itemScope
-                    itemType="https://schema.org/Service"
-                  >
-                    {/* Gradient accent line */}
-                    <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
+          {/* Auto-scrolling Carousel */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Carousel container */}
+            <div className="overflow-hidden">
+              <div 
+                className={`flex transition-transform ease-linear ${
+                  isPaused ? 'pause-animation' : ''
+                }`}
+                style={{
+                  width: `${duplicatedValues.length * 400}px`,
+                  animation: isPaused ? 'none' : 'scroll 60s linear infinite'
+                }}
+              >
+                {duplicatedValues.map((value, index) => {
+                  const Icon = value.icon;
+                  return (
+                    <article
+                      key={`${value.title}-${index}`}
+                      className="group relative flex-shrink-0 w-96 mx-4"
+                      itemScope
+                      itemType="https://schema.org/Service"
+                    >
+                      <div className="relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:border-blue-300 transition-all duration-500 h-80 flex flex-col">
+                        {/* Gradient accent line */}
+                        <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
 
-                    {/* Icon container */}
-                    <div className="flex items-center mb-6">
-                      <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
-                        <Icon className="w-6 h-6 text-white" />
+                        {/* Icon container */}
+                        <div className="flex items-center mb-6">
+                          <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
+                            <Icon className="w-6 h-6 text-white" />
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <h2 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-gray-700 transition-colors duration-300 line-clamp-2" itemProp="name">
+                          {value.title}
+                        </h2>
+
+                        {/* Description */}
+                        <p className="text-gray-600 leading-relaxed text-sm flex-grow line-clamp-6" itemProp="description">
+                          {value.description}
+                        </p>
+
+                        {/* SEO keywords (hidden) */}
+                        <meta itemProp="keywords" content={value.keywords} />
+
+                        {/* Subtle hover effect background */}
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                        
+                        {/* Glow effect on hover */}
+                        <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none bg-gradient-to-r ${value.accent}`} />
                       </div>
-                      
-                      {/* Title */}
-                      <h2 className="text-xl font-bold text-gray-900 ml-4 group-hover:text-gray-700 transition-colors duration-300" itemProp="name">
-                        {value.title}
-                      </h2>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-600 leading-relaxed text-base" itemProp="description">
-                      {value.description}
-                    </p>
-
-                    {/* SEO keywords (hidden) */}
-                    <meta itemProp="keywords" content={value.keywords} />
-
-                    {/* Subtle hover effect background */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  </article>
-                );
-              })}
+                    </article>
+                  );
+                })}
+              </div>
             </div>
+
+            {/* Gradient overlays for smooth fade effect */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10" />
           </div>
 
-          {/* Desktop: Grid Layout */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              const isLastOddItem = values.length % 2 === 1 && index === values.length - 1;
-              
-              return (
-                <article
-                  key={value.title}
-                  className={`group relative ${isLastOddItem ? 'lg:col-span-2 lg:max-w-2xl lg:mx-auto' : ''}`}
-                  itemScope
-                  itemType="https://schema.org/Service"
-                >
-                  <div className="relative bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-300 transition-all duration-300 h-full">
-                    {/* Gradient accent line */}
-                    <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${value.accent}`} />
-
-                    {/* Icon container */}
-                    <div className="flex items-center mb-6">
-                      <div className={`relative p-3 rounded-xl bg-gradient-to-r ${value.accent} shadow-lg group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      
-                      {/* Title */}
-                      <h2 className="text-2xl font-bold text-gray-900 ml-4 group-hover:text-gray-700 transition-colors duration-300" itemProp="name">
-                        {value.title}
-                      </h2>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-600 leading-relaxed text-lg" itemProp="description">
-                      {value.description}
-                    </p>
-
-                    {/* SEO keywords (hidden) */}
-                    <meta itemProp="keywords" content={value.keywords} />
-
-                    {/* Subtle hover effect background */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  </div>
-                </article>
-              );
-            })}
+          {/* Pause indicator */}
+          <div className="text-center mt-8">
+            <p className="text-sm text-gray-500">
+              {isPaused ? 'Carousel paused - move cursor away to resume' : 'Hover over cards to pause scrolling'}
+            </p>
           </div>
 
           {/* Bottom CTA */}
@@ -201,6 +234,36 @@ const Values = () => {
             </div>
           </footer>
         </div>
+
+        {/* CSS Animation */}
+        <style jsx>{`
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-${values.length * 400}px);
+            }
+          }
+          
+          .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          
+          .line-clamp-6 {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          
+          .pause-animation {
+            animation-play-state: paused !important;
+          }
+        `}</style>
       </section>
 
       {/* Contact Modal */}
