@@ -1,7 +1,4 @@
 import "./globals.css";
-
-import TransitionWrapper from "./components/transition-wrapper";
-import FirstFrameHeader from "./components/navbar";
 import LayoutWithLoader from "./components/layout-loader";
 
 export const metadata = {
@@ -85,7 +82,6 @@ export const metadata = {
   },
 };
 
-// ✅ Move themeColor and viewport here:
 export function generateViewport() {
   return {
     themeColor: "#0f172a",
@@ -98,6 +94,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Preload main font */}
         <link
           rel="preload"
           href="/EncodeSans-Regular.woff2"
@@ -105,11 +102,18 @@ export default function RootLayout({ children }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
+
+        {/* ✅ Preload hero section poster image */}
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-bg.webp"
+          type="image/webp"
+        />
       </head>
       <body>
         <LayoutWithLoader>
-
-        {children}
+          {children}
         </LayoutWithLoader>
       </body>
     </html>
