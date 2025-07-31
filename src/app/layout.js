@@ -103,6 +103,8 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
 
+     
+
         {/* ✅ Preload hero section poster image */}
         <link
           rel="preload"
