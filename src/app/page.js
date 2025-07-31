@@ -74,7 +74,7 @@ export default function Home() {
           highlight="Experts"
           subtitle="Your trusted partner in cybersecurity, offering 24/7 threat monitoring and tailored protection strategies."
           videoSrc="/intro.mp4"
-      posterImage="/hero-bg.png" // ✅ This is the key part
+      posterImage="/hero-bg.webp" // ✅ This is the key part
 
 
         />

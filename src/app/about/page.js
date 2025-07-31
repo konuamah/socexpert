@@ -65,7 +65,7 @@ export default function AboutPage() {
               highlight="About Us"
               subtitle="AI-driven excellence in cybersecurity and SOC services"
               videoSrc="/soc-team.mov"
-              posterImage="/hero-bg.png" // ✅ This is the key part
+              posterImage="/hero-bg.webp" // ✅ This is the key part
 
             />
           </section>
