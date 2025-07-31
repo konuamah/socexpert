@@ -79,6 +79,8 @@ export default function Services() {
                       highlight="Services"
                       subtitle="AI-driven excellence in cybersecurity and SOC services"
                       videoSrc="/services-hero.mov"
+                            posterImage="/hero-bg.jpg" // ✅ This is the key part
+
                     />
           </section>
 

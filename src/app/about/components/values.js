@@ -136,7 +136,7 @@ const Values = () => {
           {/* SEO-optimized header */}
           <header className="text-center mb-20">
             <h1 id="values-heading" className="text-4xl lg:text-5xl font-bold text-blue-600 mb-6 tracking-tight">
-              Cybersecurity SOC Services - Our Core Values
+             Our Core Values
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Discover our cybersecurity principles that guide everything we do—from threat detection to incident response. 
@@ -153,12 +153,11 @@ const Values = () => {
             {/* Carousel container */}
             <div className="overflow-hidden">
               <div 
-                className={`flex transition-transform ease-linear ${
-                  isPaused ? 'pause-animation' : ''
+                className={`flex transition-transform ease-linear carousel-scroll ${
+                  isPaused ? 'carousel-paused' : ''
                 }`}
                 style={{
-                  width: `${duplicatedValues.length * 400}px`,
-                  animation: isPaused ? 'none' : 'scroll 60s linear infinite'
+                  width: `${duplicatedValues.length * 400}px`
                 }}
               >
                 {duplicatedValues.map((value, index) => {
@@ -211,12 +210,7 @@ const Values = () => {
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10" />
           </div>
 
-          {/* Pause indicator */}
-          <div className="text-center mt-8">
-            <p className="text-sm text-gray-500">
-              {isPaused ? 'Carousel paused - move cursor away to resume' : 'Hover over cards to pause scrolling'}
-            </p>
-          </div>
+   
 
           {/* Bottom CTA */}
           <footer className="text-center mt-20">
@@ -235,35 +229,41 @@ const Values = () => {
           </footer>
         </div>
 
-        {/* CSS Animation */}
-        <style jsx>{`
-          @keyframes scroll {
-            0% {
-              transform: translateX(0);
+        {/* CSS Animation Styles */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes scrollCarousel {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(-${values.length * 400}px);
+              }
             }
-            100% {
-              transform: translateX(-${values.length * 400}px);
+            
+            .carousel-scroll {
+              animation: scrollCarousel 60s linear infinite;
             }
-          }
-          
-          .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
-          
-          .line-clamp-6 {
-            display: -webkit-box;
-            -webkit-line-clamp: 6;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
-          
-          .pause-animation {
-            animation-play-state: paused !important;
-          }
-        `}</style>
+            
+            .carousel-paused {
+              animation-play-state: paused !important;
+            }
+            
+            .line-clamp-2 {
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+            
+            .line-clamp-6 {
+              display: -webkit-box;
+              -webkit-line-clamp: 6;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+          `
+        }} />
       </section>
 
       {/* Contact Modal */}

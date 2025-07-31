@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 
 export default function Hero({
@@ -8,7 +9,7 @@ export default function Hero({
   videoSrc,
   fadeOutAfterMs = 5000,
   gradientClasses = "from-black via-gray-900 to-black",
-  posterImage = "", // ✅ new optional prop
+  posterImage = "", // ✅ optional image background
 }) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef(null);
@@ -21,7 +22,7 @@ export default function Hero({
     [gradientClasses]
   );
 
-  // Fade out video after set time
+  // Fade out video after a set time
   useEffect(() => {
     if (!videoRef.current || !videoLoaded) return;
 
@@ -41,7 +42,6 @@ export default function Hero({
     return () => clearTimeout(timer);
   }, [fadeOutAfterMs, videoLoaded]);
 
-  // Show full texts immediately, no typing effect
   const displayedTitle = title;
   const displayedHighlight = highlight;
   const displayedSubtitle = subtitle;
@@ -53,8 +53,17 @@ export default function Hero({
   return (
     <section
       className={`relative z-0 h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-b ${gradientClasses}`}
+      style={gradientStyle}
     >
-      {/* Background video */}
+      {/* ✅ Always visible background image */}
+      {posterImage && (
+        <div
+          className="absolute inset-0 bg-cover bg-center z-[-3]"
+          style={{ backgroundImage: `url(${posterImage})` }}
+        />
+      )}
+
+      {/* 🎥 Background video */}
       <video
         ref={videoRef}
         className={`absolute inset-0 w-full h-full object-cover z-[-2] ${
@@ -67,21 +76,21 @@ export default function Hero({
         preload="auto"
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
-        poster={posterImage} // ✅ poster image used here
+        poster={posterImage}
       >
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Loading fallback */}
-      {!videoLoaded && (
+      {/* 🔲 Optional loading pulse (can be removed) */}
+      {!videoLoaded && !posterImage && (
         <div className="absolute inset-0 bg-gray-900 z-[-2] animate-pulse" />
       )}
 
-      {/* Overlay */}
+      {/* 🌓 Overlay over video/image */}
       <div className="absolute inset-0 bg-black/35 z-[-1]" />
 
-      {/* Foreground Content */}
+      {/* 📝 Foreground Content */}
       <h1
         className="text-[3.5rem] sm:text-[5rem] md:text-[6rem] font-extrabold leading-[1.1] tracking-tight text-white mb-6 drop-shadow-lg min-h-[1.2em] will-change-contents"
         style={{ contain: "layout" }}
