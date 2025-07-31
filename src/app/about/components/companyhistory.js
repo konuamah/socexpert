@@ -39,9 +39,9 @@ const timelineData = [
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <header className="text-center mb-20">
-          <h1 className="text-5xl sm:text-6xl font-light text-blue-600 mb-6 tracking-tight">
+        <h2 className="text-4xl md:text-5xl font-semibold text-center text-blue-700 mb-4 tracking-tight leading-tight">
             Our Journey in Cybersecurity
-          </h1>
+          </h2>
           <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
             From founding Slamm SOC Experts to becoming West Africa’s premier cybersecurity partner protecting enterprises across the continent.
           </p>
