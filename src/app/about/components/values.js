@@ -1,61 +1,61 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CyberSecurityServiceCard from './value-card'; // Adjust path if needed
 import { 
-  ShieldCheck, 
-  Eye, 
-  AlertTriangle, 
-  Activity, 
-  BarChart2, 
-  Cloud 
+  Shield, 
+  Lightbulb, 
+  Award, 
+  Users, 
+  Zap, 
+  Heart 
 } from 'lucide-react';
 
-const cyberSecurityServices = [
+const companyValues = [
   {
-    title: "SOC Implementation & Optimization",
-    description: "Design, build, and optimize your Security Operations Center with best-in-class tools, processes, and workflows for maximum threat detection.",
-    icon: <ShieldCheck className="w-12 h-12 text-blue-600" />,
-    link: "#soc-implementation",
+    title: "Integrity",
+    description: "We uphold the highest ethical standards, ensuring transparency, honesty, and accountability in all interactions. Trust is the foundation of cybersecurity, and we earn it by doing what's right – every time.",
+    icon: <Shield className="w-12 h-12 text-blue-600" />,
+    link: "#integrity",
   },
   {
-    title: "24/7 Threat Monitoring",
-    description: "Continuous security monitoring with our expert SOC team to detect, analyze, and respond to threats in real-time.",
-    icon: <Eye className="w-12 h-12 text-green-600" />,
-    link: "#threat-monitoring",
+    title: "Innovation",
+    description: "We foster continuous innovation, leveraging advanced technologies and creative approaches to stay ahead of emerging cyber threats. Curiosity and improvement drive us to develop new solutions that keep our clients secure.",
+    icon: <Lightbulb className="w-12 h-12 text-yellow-600" />,
+    link: "#innovation",
   },
   {
-    title: "Incident Response Services",
-    description: "Rapid response to security incidents with our certified incident handlers to contain, eradicate, and recover from breaches.",
-    icon: <AlertTriangle className="w-12 h-12 text-red-600" />,
-    link: "#incident-response",
+    title: "Excellence",
+    description: "We commit to exceptional quality in service delivery, consistently exceeding expectations and delivering measurable value. Our goal is to not just meet requirements, but to wow our clients with superior outcomes.",
+    icon: <Award className="w-12 h-12 text-purple-600" />,
+    link: "#excellence",
   },
   {
-    title: "Threat Intelligence Integration",
-    description: "Leverage cutting-edge threat intelligence feeds and integrate them into your SOC operations for proactive defense.",
-    icon: <Activity className="w-12 h-12 text-purple-600" />,
-    link: "#threat-intelligence",
+    title: "Collaboration",
+    description: "We believe in strong partnerships – both internally within our team and externally with clients and the community. By prioritizing open communication and teamwork, we achieve collective success and create solutions that truly fit our clients' needs.",
+    icon: <Users className="w-12 h-12 text-green-600" />,
+    link: "#collaboration",
   },
   {
-    title: "SIEM Management & Tuning",
-    description: "Expert configuration, management, and tuning of your SIEM solutions to reduce false positives and improve detection accuracy.",
-    icon: <BarChart2 className="w-12 h-12 text-orange-600" />,
-    link: "#siem-management",
+    title: "Resilience",
+    description: "Cybersecurity is about preparation and endurance. We build resilient systems and practices that help organizations withstand and quickly recover from adversity. This includes a client-centric approach where we adapt to evolving challenges with agility and determination.",
+    icon: <Zap className="w-12 h-12 text-orange-600" />,
+    link: "#resilience",
   },
   {
-    title: "SOC-as-a-Service",
-    description: "Outsource your security operations to our expert team and gain enterprise-grade security without the overhead.",
-    icon: <Cloud className="w-12 h-12 text-indigo-600" />,
-    link: "#soc-as-service",
+    title: "Social Responsibility",
+    description: "We are committed to giving back and advancing cybersecurity awareness globally. Through initiatives like our \"One Million Campaign\" – a global program to provide cybersecurity training to one million individuals – we aim to democratize security knowledge and bridge the cyber skills gap.",
+    icon: <Heart className="w-12 h-12 text-red-600" />,
+    link: "#social-responsibility",
   },
 ];
 
 const CARD_WIDTH = 320; // width of each card + margin (adjust if needed)
 
-const CyberSecuritySOCServices = () => {
+const CompanyValuesCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timeoutRef = useRef(null);
 
-  const totalCards = cyberSecurityServices.length;
+  const totalCards = companyValues.length;
 
   // Auto advance the carousel every 3 seconds
   useEffect(() => {
@@ -80,12 +80,12 @@ const CyberSecuritySOCServices = () => {
   };
 
   return (
-    <section className="py-12 max-w-7xl mx-auto px-4 relative" aria-label="Cybersecurity SOC Services Carousel">
+    <section className="py-12 max-w-7xl mx-auto px-4 relative" aria-label="Company Values Carousel">
       <h2 className="text-4xl md:text-5xl font-semibold text-center text-blue-700 mb-4 tracking-tight leading-tight">
-    Security Operations Center Services
+        Our Core Values
       </h2>
       <p className="text-center max-w-3xl mx-auto mb-12 text-gray-600">
-        Our SOC experts provide comprehensive security operations services to protect your organization from evolving threats
+        These fundamental principles guide everything we do and shape the way we serve our clients and community
       </p>
 
       {/* Carousel viewport wrapper - relative needed for button absolute positioning */}
@@ -98,7 +98,7 @@ const CyberSecuritySOCServices = () => {
         {/* Navigation Buttons */}
         <button
           onClick={goToPrevious}
-          aria-label="Previous service"
+          aria-label="Previous value"
           className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-md p-2 hover:bg-gray-100 focus:outline-none"
         >
           <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
@@ -108,7 +108,7 @@ const CyberSecuritySOCServices = () => {
 
         <button
           onClick={goToNext}
-          aria-label="Next service"
+          aria-label="Next value"
           className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-md p-2 hover:bg-gray-100 focus:outline-none"
         >
           <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
@@ -121,15 +121,15 @@ const CyberSecuritySOCServices = () => {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * CARD_WIDTH}px)` }}
         >
-          {cyberSecurityServices.map((service, idx) => (
+          {companyValues.map((value, idx) => (
             <div key={idx} className="flex-shrink-0 w-80 mr-4">
-              <CyberSecurityServiceCard {...service} />
+              <CyberSecurityServiceCard {...value} />
             </div>
           ))}
           {/* Duplicate cards for seamless looping */}
-          {cyberSecurityServices.map((service, idx) => (
+          {companyValues.map((value, idx) => (
             <div key={`dup-${idx}`} className="flex-shrink-0 w-80 mr-4">
-              <CyberSecurityServiceCard {...service} />
+              <CyberSecurityServiceCard {...value} />
             </div>
           ))}
         </div>
@@ -138,4 +138,4 @@ const CyberSecuritySOCServices = () => {
   );
 };
 
-export default CyberSecuritySOCServices;
+export default CompanyValuesCarousel;
