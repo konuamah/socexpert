@@ -12,7 +12,7 @@ export default function LayoutWithLoader({ children }: { children: React.ReactNo
       // Optional: delay for animation
       setTimeout(() => {
         setIsLoaded(true);
-      }, 1000); // Adjust as needed
+      }, 400); // Adjust as needed
     };
 
     if (document.readyState === 'complete') {
