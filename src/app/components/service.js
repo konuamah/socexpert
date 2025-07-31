@@ -54,24 +54,45 @@ const services = [
 
 export default function ServicesPreview() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-4xl md:text-5xl font-semibold text-center text-blue-700 mb-4 tracking-tight leading-tight">
+    <section
+      className="max-w-7xl mx-auto px-6 py-20"
+      aria-label="Top cybersecurity services offered by our company"
+    >
+      {/* Page / section heading */}
+      <h2
+        className="text-4xl md:text-5xl font-semibold text-center text-blue-700 mb-4 tracking-tight leading-tight"
+        tabIndex={-1} // Allows focus for skip-link accessibility
+      >
         Our Top Services
       </h2>
-      <div className="mx-auto w-20 h-1 bg-blue-200 rounded-full mb-14" />
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="mx-auto w-20 h-1 bg-blue-200 rounded-full mb-14" aria-hidden="true" />
+
+      <div
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+        role="list"
+      >
         {services.map(({ title, description, icon: Icon }) => (
-          <div
+          <article
             key={title}
             className="group rounded-2xl p-6 bg-white/70 border border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300"
+            role="listitem"
+            aria-labelledby={`${title.replace(/\s+/g, "-").toLowerCase()}-title`}
           >
-            <div className="flex items-center justify-center w-14 h-14 mb-5 rounded-full bg-blue-50 group-hover:bg-blue-100 transition">
+            <div
+              className="flex items-center justify-center w-14 h-14 mb-5 rounded-full bg-blue-50 group-hover:bg-blue-100 transition"
+              aria-hidden="true"
+            >
               <Icon className="h-6 w-6 text-blue-600" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">{title}</h3>
+            <h3
+              id={`${title.replace(/\s+/g, "-").toLowerCase()}-title`}
+              className="text-lg font-semibold text-gray-800 mb-2"
+            >
+              {title}
+            </h3>
             <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
-          </div>
+          </article>
         ))}
       </div>
     </section>

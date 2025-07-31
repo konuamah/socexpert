@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Hero from "../components/hero";
 import FirstFrameHeader from "../components/navbar";
 import Footer from "../components/footer";
+import BlockchainServiceCard from "./components/value-card";
 
 const CompanyHistory = dynamic(() => import("./components/companyhistory"));
 const Values = dynamic(() => import("./components/values"));
@@ -68,10 +69,6 @@ export default function AboutPage() {
               posterImage="/hero-bg.webp" // ✅ This is the key part
 
             />
-          </section>
-
-          <section>
-   
           </section>
 
           <section>

@@ -16,12 +16,14 @@ export default function CombinedDeploymentWorkflow() {
       <aside
         className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-16 bg-white bg-opacity-90 backdrop-blur-sm rounded-3xl lg:rounded-l-3xl lg:rounded-r-none shadow-lg flex flex-col justify-center"
         aria-labelledby="core-capabilities-title"
+        role="complementary"
       >
         <div className="max-w-md mx-auto lg:mx-0">
           <p className="text-blue-600 text-sm font-semibold mb-4 tracking-wide uppercase">
             What We Do
           </p>
 
+          {/* Use h1 only once per page, but here it’s ok if this is main section */}
           <h1
             id="core-capabilities-title"
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 lg:mb-8 leading-tight"
@@ -65,6 +67,7 @@ export default function CombinedDeploymentWorkflow() {
                 key={title}
                 className="flex items-start gap-4 lg:gap-5"
                 aria-label={title}
+                role="region"
               >
                 <div
                   className={`${bgColor} w-10 h-10 rounded-3xl flex items-center justify-center flex-shrink-0 shadow-inner`}
@@ -73,6 +76,7 @@ export default function CombinedDeploymentWorkflow() {
                   <Icon className={`w-5 h-5 ${iconColor}`} />
                 </div>
                 <div>
+                  {/* Use h2 here because h1 is above */}
                   <h2 className="font-semibold text-gray-900 mb-2 text-lg lg:text-xl">
                     {title}
                   </h2>
@@ -87,14 +91,20 @@ export default function CombinedDeploymentWorkflow() {
       </aside>
 
       {/* Right Side: Image */}
-      <div className="w-full lg:w-1/2 mt-4 lg:mt-0 relative h-64 sm:h-80 lg:h-auto min-h-[400px]">
+      <div
+        className="w-full lg:w-1/2 mt-4 lg:mt-0 relative h-64 sm:h-80 lg:h-auto min-h-[400px]"
+        role="img"
+        aria-label="Cybersecurity Operations Dashboard"
+      >
         <Image
           src="/dashboard.jpg"
-          alt="Cybersecurity Operations Dashboard"
+          alt="Dashboard displaying cybersecurity operations and monitoring"
           layout="fill"
           objectFit="cover"
           className="rounded-3xl lg:rounded-r-3xl lg:rounded-l-none shadow-xl"
           priority={true}
+          loading="eager" // Explicit eager loading for LCP optimization
+          sizes="(min-width: 1024px) 50vw, 100vw"
         />
       </div>
     </section>

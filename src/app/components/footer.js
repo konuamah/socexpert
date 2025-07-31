@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import {
   Facebook,
@@ -25,21 +24,7 @@ export default function Footer() {
               <li>
                 <Link href="/services" className="hover:underline">Services</Link>
               </li>
-              <li>
-                <Link href="/blog" className="hover:underline">Blog</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="text-center">
-            <h4 className="text-white font-semibold text-lg mb-4">Contact Info</h4>
-            <ul className="space-y-2 text-sm font-[EncodeSans]">
-              <li>Koforidua House, Dome Pillar 2 Road, near Parakuo Estate</li>
-              <li>Accra, Ghana</li>
-              <li>Phone: +233 (0) 552280177</li>
-              <li>Phone: +233 (0) 546875600</li>
-              <li>Email: <a href="mailto:info@slammghana.com" className="hover:underline">info@slammghana.com</a></li>
+              
             </ul>
           </div>
 
@@ -47,19 +32,37 @@ export default function Footer() {
           <div className="text-center">
             <h4 className="text-white font-semibold text-lg mb-4">Follow Us</h4>
             <div className="flex justify-center space-x-4 text-xl font-[EncodeSans]">
-              <a href="https://www.facebook.com/Slammgh/" aria-label="Facebook" className="hover:text-white">
+              <a
+                href="https://www.facebook.com/Slammllc/"
+                aria-label="Facebook"
+                className="hover:text-white"
+              >
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://twitter.com/slammgh" aria-label="Twitter" className="hover:text-white">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="https://gh.linkedin.com/company/slammghana" aria-label="LinkedIn" className="hover:text-white">
+              <a
+                href="https://gh.linkedin.com/company/slammllc"
+                aria-label="LinkedIn"
+                className="hover:text-white"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="https://www.instagram.com/slammgh/" aria-label="Instagram" className="hover:text-white">
+              <a
+                href="https://www.instagram.com/slammllc/"
+                aria-label="Instagram"
+                className="hover:text-white"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
+          </div>
+
+          {/* Contact Info */}
+          <div className="text-center font-[EncodeSans] text-sm space-y-1">
+            <h4 className="text-white font-semibold text-lg mb-4">Contact</h4>
+            <address className="not-italic">
+              10238 Battleview Parkway,<br />
+              Manassas, VA, 20109
+            </address>
           </div>
         </div>
       </div>

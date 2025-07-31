@@ -6,6 +6,9 @@ import dynamic from "next/dynamic";
 import Hero from "../components/hero";
 import Footer from "../components/footer";
 import FirstFrameHeader from "../components/navbar";
+import FolderBlog from "./components/foldable-blog";
+import CybersecurityServices from "./components/foldable-blog";
+
 
 // Use dynamic imports for below-the-fold content sections
 const WhatWeDo = dynamic(() => import("./components/what-we-do"), {
@@ -86,6 +89,10 @@ export default function Services() {
 
           <section>
             <WhatWeDo />
+          </section>
+
+          <section>
+            <CybersecurityServices />
           </section>
 
           <section>
